@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{85A95913-C7DF-4E46-B740-FE9ABB7E526E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Business.csproj", "{85A95913-C7DF-4E46-B740-FE9ABB7E526E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{052B1A5D-10E2-4746-B0C5-CE25660A433E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{052B1A5D-10E2-4746-B0C5-CE25660A433E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{2CE6F5CF-9E3A-45DF-9684-46328BE2FD25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{2CE6F5CF-9E3A-45DF-9684-46328BE2FD25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{D034D340-4164-469C-9843-FEFFF260BF97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{D034D340-4164-469C-9843-FEFFF260BF97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxiServiceWebUI", "TaxiServiceWebUI\TaxiServiceWebUI.csproj", "{DE30994F-056B-4982-9461-08405F69D710}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodBlogWebUI", "TaxiServiceWebUI\FoodBlogWebUI.csproj", "{DE30994F-056B-4982-9461-08405F69D710}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

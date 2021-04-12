@@ -9,7 +9,6 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
 {
     public class FoodBlogContext : DbContext
     {
-        private readonly IConfiguration _configuration;
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=AysinFoodBlog;Trusted_Connection=true;");
