@@ -1,0 +1,69 @@
+﻿@model TaxiServiceWebUI.Models.FoodListtViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<section class="home-slider owl-carousel">
+    @foreach (var food in Model.LastThreeFoods)
+    {
+        <div class="slider-item">
+            <div class="container">
+                <div class="row d-flex slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+
+                    <div class="img" style="background-image: url(/images/@food.FoodImage);"></div>
+                    <div class="text d-flex align-items-center ftco-animate">
+                        <div class="text-2 pb-lg-5 mb-lg-4 px-4 px-md-5">
+                            <h3 class="subheading mb-3">Son Paylaşımlar</h3>
+                            <h1 class="mb-5">@food.FoodTitle</h1>
+                            <p><a asp-controller="Food" asp-action="GetFood" asp-route-foodId="@food.Id" class="btn btn-black px-3 px-md-4 py-3">Devamını oku <span class="icon-arrow_forward ml-lg-4"></span></a></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+</section>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7 heading-section ftco-animate">
+                <h2 class="mb-4"><span>Son Paylaşımlar</span></h2>
+            </div>
+        </div>
+        <div class="row">
+            @*<div class="col-md-6 order-md-last col-lg-6 ftco-animate">
+                    <div class="blog-entry">
+                        <div class="img img-big d-flex align-items-end" style="background-image: url(images/image_2.jpg);">
+                            <div class="overlay"></div>
+                            <div class="text">
+                                <span class="subheading">Food</span>
+                                <h3><a href="single.html">Tasty &amp; Delicious Foods</a></h3>
+                                <p class="mb-0"><a href="single.html" class="btn-custom">Read More <span class="icon-arrow_forward ml-4"></span></a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+            <div class="col-md-12">
+                <div class="row">
+                    @foreach (var food in Model.Foods)
+                    {
+                        <div class="col-md-6 ftco-animate">
+                            <div class="blog-entry">
+                                <a asp-controller="Food" asp-action="GetFood" asp-route-foodId="@food.Id" class="img d-flex align-items-end" style="background-image: url(/images/@food.FoodImage);">
+                                    <div class="overlay"></div>
+                                </a>
+                                <div class="text pt-3">
+                                    <p class="meta d-flex"><span class="pr-3">@food.CategoryName</span><span class="ml-auto pl-3">@food.FoodPublishDate</span></p>
+                                    <h3><a asp-controller="Food" asp-action="GetFood" asp-route-foodId="@food.Id"> &amp; @food.FoodTitle</a></h3>
+                                    <p class="mb-0"><a asp-controller="Food" asp-action="GetFood" asp-route-foodId="@food.Id" class="btn-custom">Devamını Oku <span class="icon-arrow_forward ml-4"></span></a></p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

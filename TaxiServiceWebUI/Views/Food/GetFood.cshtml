@@ -1,0 +1,125 @@
+﻿@model TaxiServiceWebUI.Models.FoodViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<head>
+    <script src="~/js/BaseController/BaseController.js" type="text/javascript"></script>
+    <script src="~/js/jquery.min.js" type="text/javascript"></script>
+</head>
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/images/bg_4.jpg');">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate pb-5 text-center">
+                <h1 class="mb-3 bread">@Model.Food.FoodTitle</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a  asp-controller="Home" asp-action="Index">Ana Sayfa <i class="ion-ios-arrow-forward"></i></a></span> <span>@Model.Food.FoodTitle<i class="ion-ios-arrow-forward"></i></span></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 order-lg-last ftco-animate">
+                <h2 class="mb-3">@Model.Food.FoodTitle</h2>
+                <p>
+                    <img src="/images/@Model.Food.FoodImage" alt="" class="img-fluid">
+                </p>
+               <p>@Html.Raw(Model.Food.FoodDescription)</p>
+
+                <div class="about-author d-flex p-4 bg-light">
+                    <div class="bio mr-5" style="height:150px;">
+                        <img style="height:100%;" src="/images/profile/@Model.Info.ImagePath" class="img-fluid mb-4">
+                    </div>
+                    <div class="desc">
+                        <h3>@Model.Info.Name</h3>
+                        <p>@Model.Info.Description</p>
+                    </div>
+                </div>
+
+
+                <div class="pt-5 mt-5">
+                    <h3 class="mb-5">@Model.FoodComments.Count Yorum</h3>
+                    <ul class="comment-list">
+                        @foreach (var comment in Model.FoodComments)
+                        {
+                            <li class="comment">
+                                <div class="vcard bio">
+                                    <img src="/images/profile/IS_Kitchen.png">
+                                </div>
+                                <div class="comment-body">
+                                    <h3>@comment.Name</h3>
+                                    <div class="meta">@comment.Date</div>
+                                    <p>@comment.Comment</p>
+                                    @*<p><a href="#" class="reply">Reply</a></p>*@
+                                </div>
+                            </li>
+                        }
+                    </ul>
+
+                    <div class="comment-form-wrap pt-5">
+                        <h3 class="mb-5">Yorum Bırakın</h3>
+                        <form asp-controller="Food" asp-action="MakeComment" method="post" class="p-5 bg-light">
+                            <div class="form-group row">
+                                <label style="display:none;" asp-for="Food.Id" class="col-sm-2 col-form-label"></label>
+                                <div class="col-sm-10">
+                                    <input id="foodId" type="hidden" asp-for="Food.Id" class="form-control" placeholder="Yemek Id.">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.FoodComment.Name">İsim *</label>
+                                <input asp-for="@Model.FoodComment.Name" type="text" class="form-control" id="Name">
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="@Model.FoodComment.Comment">Mesaj *</label>
+                                <input type="text" asp-for="@Model.FoodComment.Comment" class="form-control" id="Message"/>
+                            </div>
+                            <div class="form-group">
+                                <input  type="submit" value="Yorum Yap" class="btn py-3 px-4 btn-primary">
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div> <!-- .col-md-8 -->
+            <div class="col-lg-4 sidebar pr-lg-5 ftco-animate">
+                <div class="sidebar-box ftco-animate">
+                    <ul class="categories">
+                        <h3 class="heading mb-4">Kategoriler</h3>
+                        @foreach (var foodCategory in Model.FoodCategories)
+                        {
+                            <li><a asp-controller="Food" asp-action="GetCategory" asp-route-categoryId="@foodCategory.Id">@foodCategory.CategoryName</a></li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="sidebar-box ftco-animate">
+                    <h3 class="heading mb-4">Son Paylaşımlar</h3>
+                   @foreach (var food in Model.Foods)
+                    {
+                        <div class="block-21 mb-4 d-flex">
+                            <a class="blog-img mr-4" style="background-image: url(/images/@food.FoodImage);"></a>
+                            <div class="text">
+                                <h3><a  asp-controller="Food" asp-action="GetFood" asp-route-foodId="@food.Id">@food.FoodTitle</a></h3>
+                                <div class="meta">
+                                    <div><a  asp-controller="Food" asp-action="GetFood" asp-route-foodId="@food.Id"><span class="icon-calendar"></span> @food.FoodPublishDate</a></div>
+                                    <div><a  asp-controller="Food" asp-action="GetFood" asp-route-foodId="@food.Id"><span class="icon-chat"></span>@food.CategoryName</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                   
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section> <!-- .section -->

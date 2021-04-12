@@ -1,0 +1,84 @@
+﻿@model TaxiServiceWebUI.Models.CategoryViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/images/bg_4.jpg');">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate pb-5 text-center">
+                <h1 class="mb-3 bread">Yemekler</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a asp-controller="Home" asp-action="Index">Ana Sayfa <i class="ion-ios-arrow-forward"></i></a></span> <span>Kategoriler<i class="ion-ios-arrow-forward"></i></span></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="row">
+                    @foreach (var food in Model.Foods)
+                    {
+                        <div class="col-md-4 ftco-animate">
+                            <div class="blog-entry">
+                                <a asp-controller="Food" asp-action="GetFood" asp-route-foodId="@food.Id" class="img-2"><img src="/images/@food.FoodImage" class="img-fluid"></a>
+                                <div class="text pt-3">
+                                    <p class="meta d-flex"><span class="pr-3">@food.CategoryName</span><span class="ml-auto pl-3">@food.FoodPublishDate</span></p>
+                                    <h3><a asp-controller="Food" asp-action="GetFood" asp-route-foodId="@food.Id">@food.FoodTitle</a></h3>
+                                    <p class="mb-0"><a asp-controller="Food" asp-action="GetFood" asp-route-foodId="@food.Id" class="btn btn-black py-2">Devamını Gör <span class="icon-arrow_forward ml-4"></span></a></p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                <div class="row mt-5">
+                    <div class="col text-center">
+                        <div class="block-27">
+                            <ul>
+                                <li><a href="#">&lt;</a></li>
+                                <li class="active"><span>1</span></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#">&gt;</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="sidebar-wrap">
+                    <div class="sidebar-box p-4 about text-center ftco-animate">
+                        <h2 class="heading mb-4">@Model.Info.Name</h2>
+                        <img src="/images/profile/@Model.Info.ImagePath" class="img-fluid" alt="Colorlib Template">
+                        <div class="text pt-4">
+                            <p>@Model.Info.Description</p>
+                        </div>
+                    </div>
+                    <div class="sidebar-box categories text-center ftco-animate">
+                        <h2 class="heading mb-4">Kategoriler</h2>
+                        <ul class="category-image">
+                            @foreach (var category in Model.FoodCategories)
+                            {
+                                <li>
+                                    <a asp-controller="Food" asp-action="GetCategory" asp-route-categoryId="@category.Id" class="img d-flex align-items-center justify-content-center text-center" style="background-image: url(/images/categories/@category.ImagePath);">
+                                        <div class="text">
+                                            <h3>@category.CategoryName</h3>
+                                        </div>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

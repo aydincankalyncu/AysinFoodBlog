@@ -1,0 +1,74 @@
+﻿@model TaxiServiceWebUI.Areas.Admin.Models.HomeIndexViewModel
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <!-- Default box -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Yönetim Paneli</h3>
+
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        Bu bölümde özet bilgilerin bulunduğu bir özet ekran görüntülenmektedir.
+                        İlgili değişiklikler için lütfen sol menüde bulunan sekmelere geçiş yapınız.
+                    </div>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="row">
+
+
+    <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+        <div class="card-header">Yemek Özeti</div>
+        <div class="card-body">
+            <h5 class="card-title">Toplam Yemek Sayısı</h5>
+            <div style="text-align:center; font-weight:bold; font-size: 5em;" class="card-text">@Model.Foods.Count</div>
+        </div>
+    </div>
+
+
+    <div class="card text-white bg-warning mb-3" style="max-width: 18rem; margin-left:10px;">
+        <div class="card-header">Yemek Kategori Özeti</div>
+        <div class="card-body">
+            <h5 class="card-title">Toplam Kategori Sayısı</h5>
+            <div style="text-align:center; font-weight:bold; font-size: 5em;" class="card-text">@Model.FoodCategories.Count</div>
+        </div>
+    </div>
+
+
+    <div class="card text-white bg-info mb-3" style="max-width: 44rem; margin-left:10px;">
+        <div class="card-header">Kişisel Bilgi Özeti</div>
+        <div class="card-body">
+            <h5 class="card-title">Toplam Bilgi Sayısı:  @Model.Infos.Count</h5>
+            @foreach (var info in Model.Infos)
+            {
+                <p class="card-text">@info.Description</p>
+            }
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+

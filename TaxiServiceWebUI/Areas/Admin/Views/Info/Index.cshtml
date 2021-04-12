@@ -1,0 +1,222 @@
+﻿@model TaxiServiceWebUI.Areas.Admin.Models.InfoListViewModel
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <!-- Default box -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Kişisel Bilgiler Ekranı</h3>
+
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        Bu bölümde kişisel bilgilerinizi güncelleyebilir ve onları ana sayfanızda görüntüleyebilirsiniz.
+                    </div>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+</section>
+<div style="margin-left: 0px; margin-right: 0px;" class="row">
+    <div class="col-md-3">
+
+        <!-- Profile Image -->
+        <div class="card card-primary card-outline">
+            <div class="card-body box-profile">
+                <div class="text-center">
+                    <img class="profile-user-img img-fluid img-circle"
+                         src="/images/profile/@Model.Info.ImagePath"
+                         alt="User profile picture">
+                </div>
+
+                <h3 class="profile-username text-center">@Model.Info.Name</h3>
+
+                <p class="text-muted text-center">@Model.Info.Job</p>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+        <!-- About Me Box -->
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Hakkımda</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <strong><i class="fas fa-book mr-1"></i> Eğitim</strong>
+
+                <p class="text-muted">
+                    @Model.Info.Education
+                </p>
+
+                <hr>
+
+                <strong><i class="fas fa-map-marker-alt mr-1"></i> Adres</strong>
+
+                <p class="text-muted">@Model.Info.Location</p>
+
+                <hr>
+
+                <strong><i class="far fa-file-alt mr-1"></i> Açıklama</strong>
+
+                <p class="text-muted">@Model.Info.Description</p>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+    <div class="col-md-9">
+        <div class="card">
+            <div class="card-header p-2">
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a class="nav-link active" href="#dashboard" data-toggle="tab">Özet</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Ayarlar</a></li>
+                </ul>
+            </div><!-- /.card-header -->
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="active tab-pane" id="dashboard">
+                        <div class="row">
+                            <div class="col-lg-12 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-info">
+                                    <div class="inner">
+                                        <h3>@Model.FoodCount</h3>
+
+                                        <p>Toplam Yemek</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-information"></i>
+                                    </div>
+                                    <a href="@Url.Action("Index","Food")" class="small-box-footer">Daha fazlası <i class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-6">
+                                    <!-- small box -->
+                                    <div class="small-box bg-success">
+                                        <div class="inner">
+                                            <h3>@Model.CategoryCount</h3>
+
+                                            <p>Toplam Kategori</p>
+                                        </div>
+                                        <div class="icon">
+                                            <i class="ion ion-stats-bars"></i>
+                                        </div>
+                                        <a href="@Url.Action("Index","Category")" class="small-box-footer">Daha fazlası <i class="fas fa-arrow-circle-right"></i></a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    <div class="tab-pane" id="settings">
+                        <form class="form-horizontal" asp-controller="Info" asp-action="Update" method="post" enctype="multipart/form-data">
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label style="display:none;" asp-for="@Model.Info.Id" class="col-sm-2 col-form-label"></label>
+                                    <div class="col-sm-10">
+                                        <input type="hidden" asp-for="@Model.Info.Id" class="form-control" placeholder="Profile Id.">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="@Model.Info.Name" class="col-sm-2 col-form-label"> İsim</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" asp-for="@Model.Info.Name" class="form-control" placeholder="İsminizi giriniz.">
+                                    </div>
+                                    <span style="margin-left:5px; color:dodgerblue; font-weight:bold;" asp-validation-for="@Model.Info.Name"></span>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="@Model.Info.Job" class="col-sm-2 col-form-label"> Meslek</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" asp-for="@Model.Info.Job" class="form-control" placeholder="Mesleğinizi giriniz.">
+                                    </div>
+                                    <span style="margin-left:5px; color:dodgerblue; font-weight:bold;" asp-validation-for="@Model.Info.Job"></span>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="@Model.Info.ImagePath" class="col-sm-2 col-form-label"> Profil Resmi</label>
+                                    <div class="col-sm-4">
+                                        <input type="file" name="file" width="80">
+                                    </div>
+                                    <span style="margin-left:5px; color:dodgerblue; font-weight:bold;" asp-validation-for="@Model.Info.ImagePath"></span>
+                                    <div class="col-sm-4">
+                                        <img src="~/images/profile/@Model.Info.ImagePath" width="250" height="300" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="@Model.Info.Email" class="col-sm-2 col-form-label"> Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" asp-for="@Model.Info.Email" class="form-control" placeholder="Email adresinizi giriniz.">
+                                    </div>
+                                    <span style="margin-left:5px; color:dodgerblue; font-weight:bold;" asp-validation-for="@Model.Info.Email"></span>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="@Model.Info.Education" class="col-sm-2 col-form-label"> Eğitim</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" asp-for="@Model.Info.Education" class="form-control" placeholder="Eğitim bilgisi giriniz.">
+                                    </div>
+                                    <span style="margin-left:5px; color:dodgerblue; font-weight:bold;" asp-validation-for="@Model.Info.Education"></span>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="@Model.Info.Description" class="col-sm-2 col-form-label"> Açıklama</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" asp-for="@Model.Info.Description" class="form-control" placeholder="Açıklama giriniz.">
+                                    </div>
+                                    <span style="margin-left:5px; color:dodgerblue; font-weight:bold;" asp-validation-for="@Model.Info.Description"></span>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="@Model.Info.Location" class="col-sm-2 col-form-label"> Konum</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" asp-for="@Model.Info.Location" class="form-control" placeholder="Lokasyon bilgisi giriniz.">
+                                    </div>
+                                    <span style="margin-left:5px; color:dodgerblue; font-weight:bold;" asp-validation-for="@Model.Info.Location"></span>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="@Model.Info.PhoneNumber" class="col-sm-2 col-form-label"> Telefon Numarası</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" asp-for="@Model.Info.PhoneNumber" class="form-control" placeholder="Telefon bilgisi giriniz.">
+                                    </div>
+                                    <span style="margin-left:5px; color:dodgerblue; font-weight:bold;" asp-validation-for="@Model.Info.PhoneNumber"></span>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="@Model.Info.MapUrl" class="col-sm-2 col-form-label"> Google Haritalar Konum Adresi</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" asp-for="@Model.Info.MapUrl" class="form-control" placeholder="Google haritalardan kopyaladığınız url bilgisi giriniz.">
+                                    </div>
+                                    <span style="margin-left:5px; color:dodgerblue; font-weight:bold;" asp-validation-for="@Model.Info.MapUrl"></span>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-info btn-flat">Kaydet</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <!-- /.tab-pane -->
+                </div>
+                    <!-- /.tab-content -->
+                </div><!-- /.card-body -->
+        </div>
+        <!-- /.nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+</div>
